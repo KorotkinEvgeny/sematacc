@@ -25,6 +25,7 @@ Template.projects.events({
         event.preventDefault();
         var name = $('input#nameNewProject').val();
         var description = $('textarea#descriptionNewProject').val();
+        var isPublicChecker = $('input#publicViewCheckbox:checked').length > 0;
         if (name && description) {
             var projectId = Session.get('editProjectId');
             if (projectId) {
@@ -34,12 +35,13 @@ Template.projects.events({
                     $set: {
                         name: name,
                         description: description,
+                        public: isPublicChecker,
                     }
                 });
                 Meteor.call('log', projectId, 'Project', 'Modified');
                 Session.set('editProjectId', null);
             } else {
-                Meteor.call('newProject', name, description, false,
+                Meteor.call('newProject', name, description, isPublicChecker, false,
                     function(error, result) {
                         if (error) {
                             alert('Error when creating project: ' + error);

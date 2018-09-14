@@ -32,7 +32,10 @@ Meteor.publish('Projects', function() {
             userId: this.userId
         }, {
             demo: true
-        }]
+        },
+            {
+                public: true
+            }]
     })
 });
 
@@ -47,8 +50,8 @@ Meteor.publish('Events', function() {
  * Register the 'public' methods available to the client
  */
 Meteor.methods({
-    newProject: function(name, description, demo) {
-        return newProject(name, description, demo);
+    newProject: function(name, description, isPublic, demo) {
+        return newProject(name, description, isPublic, demo);
     },
     updateProject: function(projectId, concern, alpha, newStatePointer) {
         return updateProject(projectId, concern, alpha, newStatePointer);

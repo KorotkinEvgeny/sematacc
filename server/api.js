@@ -16,7 +16,7 @@
  * @param  {bool} is the proejct a demo project?
  * @return {int}             The Meteor/MongoDB id of the Project
  */
-newProject = function(name, description, demo) {
+newProject = function(name, description, isPublic, demo) {
     if (!typeof(name) === 'string' || !name) {
         return 'Error. Wrong projectId supplied. Please contact the developer.';
     }
@@ -34,7 +34,8 @@ newProject = function(name, description, demo) {
     var alphaCounter = 0;
 
     var userId;
-    if (demo === true)
+    // if (demo === true || isPublic === true)
+    if (isPublic === true)
         userId = null;
     else
         userId = Meteor.userId();
@@ -67,6 +68,8 @@ newProject = function(name, description, demo) {
         project.description = description; 
         project.demo = demo; 
         project.userId = userId;
+
+        project.public = isPublic;
 
         project.kernel = new Object(); 
         project.kernel.concerns = currentKernelSkeleton.concerns;
