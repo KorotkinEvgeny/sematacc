@@ -6,7 +6,7 @@
 
 Meteor.startup(function() {
     Projects.remove({demo:true, userId:null});
-    Meteor.call('newProject', 'Demo Project', 'This is a demo project.', true);
+    // Meteor.call('newProject', 'Demo Project', 'This is a demo project.', true);
 });
 
 /**
