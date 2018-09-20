@@ -3,12 +3,18 @@
  * Copyright (C) 2013 Daniel Graziotin. All Rights Reserved.
  * Licensed under the BSD 3-Clause. See the LICENSE File for details.
  */
+Accounts.config({restrictCreationByEmailDomain: function(email) {
+        var domain = email.slice(email.lastIndexOf("@")+1);
+        var allowed = ["awem.by", "awem.com"];
+        return _.contains(allowed, domain);
+    }
+});
+
 
 Meteor.startup(function() {
     Projects.remove({demo:true, userId:null});
     // Meteor.call('newProject', 'Demo Project', 'This is a demo project.', true);
 });
-
 /**
  * Define the ACLs for each model.
  */
@@ -21,7 +27,6 @@ Projects.allow({
     },
     fetch: ['userId']
 });
-
 
 /**
  * Publish the collections of the models, to the connected client.
