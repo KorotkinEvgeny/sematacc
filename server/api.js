@@ -68,6 +68,7 @@ newProject = function(name, description, isPublic, demo) {
         project.description = description; 
         project.demo = demo; 
         project.userId = userId;
+        project.owner = Meteor.userId();
 
         project.public = isPublic;
 

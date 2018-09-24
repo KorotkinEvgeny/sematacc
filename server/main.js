@@ -20,10 +20,24 @@ Meteor.startup(function() {
  */
 Projects.allow({
     update: function(userId, doc, fields, modifier) {
-        return doc.userId === userId;
+
+        var allowUpdate = true;
+        if (doc.owner === userId){
+            allowUpdate = false;
+
+        }
+
+        if (Meteor.userId() === doc.owner){
+            allowUpdate = false;
+        }
+
+
+        // return doc.userId === userId;
+        return Meteor.userId() === doc.userId;
     },
     remove: function(userId, doc) {
-        return doc.userId === userId;
+        return doc.owner === Meteor.userId();
+        // return true;
     },
     fetch: ['userId']
 });

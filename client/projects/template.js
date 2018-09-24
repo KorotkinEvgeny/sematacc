@@ -16,6 +16,9 @@ Template.projects.helpers({
     },
     checkable: function(id) {
     	(id === Session.get('selectedProjectId')) ? 'checked' : 'false';
+    },
+    ispublic: function (publicProp) {
+        return publicProp ? 'icon-users' : '';
     }
 });
 

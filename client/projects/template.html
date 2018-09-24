@@ -19,10 +19,14 @@
         {{#each p in userProjects}}
             <div class="concern-container">
                 <input class="accordionitem" id="{{p._id}}" name="{{p._id}}" type="radio" checked="{{checkable p._id}}" />
+
                 <label for="{{p._id}}" class="accordionlabel">
+
                     <div class="projectName">
+                        <a class="{{ispublic p.public}}"></a>
                         {{p.name}}
                     </div>
+
                     <div class="projectCommands" id="projectCommands{{p._id}}">
                         <a href="/p/{{p._id}}" class="viewProject icon-play" title="Run Project on SematAcc"></a>
                         <a href="#" class="editProject icon-pencil" title="Edit Project"></a>
