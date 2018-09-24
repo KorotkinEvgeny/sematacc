@@ -5,7 +5,7 @@
  */
 Accounts.config({restrictCreationByEmailDomain: function(email) {
         var domain = email.slice(email.lastIndexOf("@")+1);
-        var allowed = ["awem.by", "awem.com", "gmail.com"];
+        var allowed = ["awem.by", "awem.com"];
         return _.contains(allowed, domain);
     }
 });
