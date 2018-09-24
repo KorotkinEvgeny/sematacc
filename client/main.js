@@ -10,13 +10,13 @@ Meteor.autorun(function() {
     if (Session.get('demoMode')) {
         var project = Projects.findOne({
             demo: true,
-            userId: null
+            public: true
         });
         if (project) {
             Session.set('selectedProjectId', project._id);
         }
     }
-})
+});
 
 Meteor.autorun(function() {
     if (Session.get('selectedProjectId')) {

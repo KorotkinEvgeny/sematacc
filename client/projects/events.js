@@ -36,7 +36,6 @@ Template.projects.events({
                         name: name,
                         description: description,
                         public: isPublicChecker,
-                        owner: Meteor.userId()
                     }
                 });
                 Meteor.call('log', projectId, 'Project', 'Modified');
@@ -89,8 +88,7 @@ Template.projects.events({
         Session.set('editProjectId', projectId);
         var project = Projects.findOne({
             _id: projectId,
-            // userId: Meteor.userId()
-            owner: Meteor.userId()
+            userId: Meteor.userId()
         });
         $('input#nameNewProject').val(project.name);
         $('textarea#descriptionNewProject').val(project.description);

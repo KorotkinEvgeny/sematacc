@@ -34,11 +34,8 @@ newProject = function(name, description, isPublic, demo) {
     var alphaCounter = 0;
 
     var userId;
-    // if (demo === true || isPublic === true)
-    if (isPublic === true)
-        userId = null;
-    else
-        userId = Meteor.userId();
+
+    userId = Meteor.userId();
 
     var project = {};
 
@@ -68,7 +65,8 @@ newProject = function(name, description, isPublic, demo) {
         project.description = description; 
         project.demo = demo; 
         project.userId = userId;
-        project.owner = Meteor.userId();
+
+        project.creator = Meteor.user();
 
         project.public = isPublic;
 

@@ -5,7 +5,7 @@
  */
 Accounts.config({restrictCreationByEmailDomain: function(email) {
         var domain = email.slice(email.lastIndexOf("@")+1);
-        var allowed = ["awem.by", "awem.com"];
+        var allowed = ["awem.by", "awem.com", "gmail.com"];
         return _.contains(allowed, domain);
     }
 });
@@ -21,23 +21,10 @@ Meteor.startup(function() {
 Projects.allow({
     update: function(userId, doc, fields, modifier) {
 
-        var allowUpdate = true;
-        if (doc.owner === userId){
-            allowUpdate = false;
-
-        }
-
-        if (Meteor.userId() === doc.owner){
-            allowUpdate = false;
-        }
-
-
-        // return doc.userId === userId;
-        return Meteor.userId() === doc.userId;
+        return doc.userId === userId;
     },
     remove: function(userId, doc) {
-        return doc.owner === Meteor.userId();
-        // return true;
+        return doc.userId === userId;
     },
     fetch: ['userId']
 });
